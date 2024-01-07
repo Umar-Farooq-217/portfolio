@@ -15,7 +15,7 @@ export default function Navbar() {
     
     
     </div>
-    <button className='bg-green-400 font-bold rounded-2xl hover:bg-black  text-white px-5 p-1 hover:scale-110'>Hire Me</button>
+    <button className='bg-green-400 font-bold rounded-2xl hover:bg-black  text-white px-5 p-1 hover:scale-110'>Github Link</button>
     
     </div>
   )
