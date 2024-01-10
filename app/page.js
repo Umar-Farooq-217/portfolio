@@ -6,6 +6,7 @@ import ImageSlider from './components/imageSlider/ImageSlider';
 const images = [
   '/umar.png',
   '/umar.jpg',
+  '/bg.jpg'
 
 
   // Add more image paths as needed
@@ -26,7 +27,7 @@ export default function Home() {
    </div>
    <div className='flex m-auto'>
   
-   <ImageSlider  images={images}  />
+   <Image src='/farooq.png' width={200} height={300} />
   
    </div>
    </div>

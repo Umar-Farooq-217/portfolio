@@ -4,8 +4,48 @@
 
 
 .umar {
-    background: linear-gradient(65deg, #76eb29, #1b43c7, #ff0080,#6104a0);
+    background: linear-gradient(65deg, #da079a, #1b43c7, #ff0080,#6104a0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  .bar{
+    display:none;
+  }
+  .responsive.navbar-show{
+    display:block;
+  }
+
+  .main{
+    display:flex
+  }
+
+  @media(max-width:750px){
+    .responsive{
+      margin-top:30px;
+    }
+    .responsive > li{
+      margin-top: 20px;
+    }
+    .responsive.navbar-hide{
+      display: none;
+      
+    }
+    .bar{
+      display: block;
+      font-size: 30px;
+    position: absolute;
+    top:29px;
+    right:20px
+    }
+    .main{
+      display: block;
+     
+    }
+    .btn{
+     display: flex;
+     margin: auto; 
+     margin-top: 30px;
+    }
   }
   

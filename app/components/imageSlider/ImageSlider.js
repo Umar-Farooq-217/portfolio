@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react';
+import Image from 'next/image';
 
 const ImageSlider= ({ images }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -16,6 +17,8 @@ const ImageSlider= ({ images }) => {
       <div className="relative w-full h-64 md:h-96 lg:h-128">
         {images.map((image, index) => (
           <Image
+          width={100}
+          height={100}
             key={index}
             src={image}
             alt={`Slide ${index}`}
