@@ -19,7 +19,7 @@ export default function Home() {
    <div className='bg-[url("/bg.jpg")]  bg-cover'>
    <Navbar/>
 
-   <div className='grid lg:grid-cols-2'>
+   <div className='grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 mx-10'>
    <div>
    
    <TypeWriter textArray={textArray} />
@@ -27,7 +27,7 @@ export default function Home() {
    </div>
    <div className='flex m-auto'>
   
-   <Image src='/farooq.png' width={200} height={300} />
+   <Image src='/farooq.jpg' width={200} height={300}  className='rounded-full w-72 ' />
   
    </div>
    </div>
