@@ -28,7 +28,6 @@ export default function Home() {
    <div className='flex m-auto'>
   
    <Image src='/farooq.jpg' width={200} height={300}  className='rounded-full w-72 ' />
-   <ImageSlider images={images} />
 
    </div>
    </div>
