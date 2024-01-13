@@ -21,7 +21,7 @@ const TypeWriter = ({ textArray }) => {
   }, [currentText, currentIndex, textArray]);
 
   return (
-    <span className="text-4xl font-serif font-bold umar">
+    <span className="text-5xl font-serif font-bold umar">
       {currentText}
       <span className="animate-blink">|</span>
     </span>

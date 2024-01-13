@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 
+/* Add your custom styles here */
+
+
 .umar {
     background: linear-gradient(65deg, #da079a, #1b43c7, #ff0080,#6104a0);
     -webkit-background-clip: text;
@@ -35,7 +38,7 @@
       display: block;
       font-size: 30px;
     position: absolute;
-    top:29px;
+    top:23px;
     right:20px
     }
     .main{

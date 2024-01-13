@@ -1,19 +1,12 @@
-'use client'// components/ImageSlider.js// components/ImageSlider.js
-import React, { useEffect, useState } from 'react';
+// pages/index.js
+
+import React from 'react';
+import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const ImageSlider = ({ images }) => {
-  const [Slideer, setSlideer] = useState(null);
-
-  useEffect(() => {
-    // Dynamically import react-slick when component mounts on the client side
-    import('react-slick').then((slick) => {
-      setSlideer(slick.default);
-    });
-  }, []);
-
-  const settings = {
+const ImageSlider = () => {
+  const sliderSettings = {
     dots: true,
     infinite: true,
     speed: 500,
@@ -22,20 +15,20 @@ const ImageSlider = ({ images }) => {
   };
 
   return (
-    Slideer && (
-      <div>
-        <Slideer {...settings}>
-          {images.map((image, index) => (
-            <div key={index}>
-              <img src={image} alt={`Slide ${index + 1}`} />
-            </div>
-          ))}
-        </Slideer>
-      </div>
-    )
+    <div className="max-w-screen-lg mx-auto mt-10">
+      <Slider {...sliderSettings}>
+        <div>
+          <img src="/card2.png" alt="Slide 1" className="w-full" />
+        </div>
+        <div>
+          <img src="/card.png" alt="Slide 2" className="w-full" />
+        </div>
+        <div>
+          <img src="/card1.png" alt="Slide 3" className="w-full" />
+        </div>
+      </Slider>
+    </div>
   );
 };
 
 export default ImageSlider;
-
-
