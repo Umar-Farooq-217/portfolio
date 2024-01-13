@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 
-/* Add your custom styles here */
+
 
 
 .umar {
@@ -22,6 +22,9 @@
   .main{
     display:flex
   }
+  .far{
+    display:flex;
+  }
 
   @media(max-width:750px){
     .responsive{
@@ -29,6 +32,7 @@
     }
     .responsive > li{
       margin-top: 20px;
+  
     }
     .responsive.navbar-hide{
       display: none;
