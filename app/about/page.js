@@ -20,7 +20,7 @@ export default function page() {
     <div className='lg:px-20 md:px-14 sm:px-5 pt-10 pb-24'>
     <AboutCard title='Web & Mobile App Development ' time='2022-2023' name='Saylani Mass IT Training Program , Faisalabad' />
     </div>
-    <div></div>
+    
 
     </div>
    

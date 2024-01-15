@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import Navbar from '../components/navbar/Navbar';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, updateDoc, doc, deleteDoc } from 'firebase/firestore';
 import { db } from '@/config/firebase';
 
 export default function Page() {
@@ -9,14 +9,15 @@ export default function Page() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false); // State to manage loading
+  const [submittedData, setSubmittedData] = useState(null);
 
   const submitHandler = async () => {
-    if(!name || !phone || !email){
-      alert('all fields are required')
+    if (!name || !phone || !email) {
+      alert('All fields are required');
       return;
     }
     try {
-      setLoading(true); // Set loading to true when the form is being submitted
+      setLoading(true);
       let data = {
         name,
         email,
@@ -24,12 +25,13 @@ export default function Page() {
       };
 
       const collectionName = collection(db, 'portfolio');
-      await addDoc(collectionName, data);
-      console.log('Document written with ID: ');
+      const docRef = await addDoc(collectionName, data);
+      setSubmittedData({ id: docRef.id, ...data });
+      console.log('Document written with ID: ', docRef.id);
     } catch (error) {
       console.error('Error adding document: ', error);
     } finally {
-      setLoading(false); // Set loading back to false when the submission is complete (success or error)
+      setLoading(false);
     }
 
     setName('');
@@ -37,10 +39,59 @@ export default function Page() {
     setPhone('');
   };
 
+  const updateHandler = async () => {
+    try {
+      const collectionName = collection(db, 'portfolio');
+      await updateDoc(doc(collectionName, submittedData.id), {
+        name, // Update with the new data
+        email,
+        phone,
+      });
+      alert('Document updated successfully!');
+    } catch (error) {
+      console.error('Error updating document: ', error);
+    }
+  };
+
+  const deleteHandler = async () => {
+    try {
+      const collectionName = collection(db, 'portfolio');
+      await deleteDoc(doc(collectionName, submittedData.id));
+      setSubmittedData(null); // Reset submittedData state after deletion
+      alert('Document deleted successfully!');
+    } catch (error) {
+      console.error('Error deleting document: ', error);
+    }
+  };
+
+
   return (
-    <div>
+    
       <div className='bg-[url("/bg.jpg")] bg-cover h-screen '>
         <Navbar />
+        <div className='text-center'>
+        {submittedData && (
+          <div className='mt-6'>
+            <h2 className='text-3xl text-white'>Submitted Details:</h2>
+            <p className='text-white'>
+              Name: {submittedData.name} | Email: {submittedData.email} | Phone: {submittedData.phone}
+            </p>
+            <div className='flex mt-4'>
+              <button
+                onClick={updateHandler}
+                className='bg-blue-400 text-white font-bold px-4 py-1 rounded mr-4 hover:bg-blue-600'
+              >
+                Update
+              </button>
+              <button
+                onClick={deleteHandler}
+                className='bg-red-400 text-white font-bold px-4 py-1 rounded hover:bg-red-600'
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        )}
 
         <div className='bg-[url("/cardbg.jpg")] font-bold text-white lg:mx-24 md:mx-16 sm:mx-0 mt-24  '>
           <h1 className='text-5xl pb-6 text-center pt-6'>Fill This Form</h1>
