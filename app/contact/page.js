@@ -40,28 +40,11 @@ export default function Page() {
   };
 
   const updateHandler = async () => {
-    try {
-      const collectionName = collection(db, 'portfolio');
-      await updateDoc(doc(collectionName, submittedData.id), {
-        name, // Update with the new data
-        email,
-        phone,
-      });
-      alert('Document updated successfully!');
-    } catch (error) {
-      console.error('Error updating document: ', error);
-    }
+  
   };
 
   const deleteHandler = async () => {
-    try {
-      const collectionName = collection(db, 'portfolio');
-      await deleteDoc(doc(collectionName, submittedData.id));
-      setSubmittedData(null); // Reset submittedData state after deletion
-      alert('Document deleted successfully!');
-    } catch (error) {
-      console.error('Error deleting document: ', error);
-    }
+   
   };
 
 
