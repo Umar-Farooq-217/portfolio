@@ -25,9 +25,8 @@ export default function Page() {
       };
 
       const collectionName = collection(db, 'portfolio');
-      const docRef = await addDoc(collectionName, data);
-      setSubmittedData({ id: docRef.id, ...data });
-      console.log('Document written with ID: ', docRef.id);
+       await addDoc(collectionName, data);
+   
     } catch (error) {
       console.error('Error adding document: ', error);
     } finally {
@@ -38,7 +37,15 @@ export default function Page() {
     setEmail('');
     setPhone('');
   };
+const fetchData = async()=>{
+  try{
+    const collectionName = collection(db,'portfolio')
+    const docs = await getDocs(collectionName);
+  }
+  try
 
+  
+};
   const updateHandler = async () => {
   
   };
@@ -50,34 +57,39 @@ export default function Page() {
 
   return (
     
-      <div className='bg-[url("/bg.jpg")] bg-cover h-screen '>
+      <div className='bg-[url("/bg.jpg")] bg-cover h-full '>
         <Navbar />
         <div className='text-center'>
         {submittedData && (
-          <div className='mt-6'>
+          <div className='mt-6 text-center'>
             <h2 className='text-3xl text-white'>Submitted Details:</h2>
-            <p className='text-white'>
-              Name: {submittedData.name} | Email: {submittedData.email} | Phone: {submittedData.phone}
-            </p>
-            <div className='flex mt-4'>
-              <button
-                onClick={updateHandler}
-                className='bg-blue-400 text-white font-bold px-4 py-1 rounded mr-4 hover:bg-blue-600'
-              >
-                Update
-              </button>
-              <button
-                onClick={deleteHandler}
-                className='bg-red-400 text-white font-bold px-4 py-1 rounded hover:bg-red-600'
-              >
-                Delete
-              </button>
-            </div>
+            <ul>
+            <li>              Name: {submittedData.name} </li>
+            <li>Email: {submittedData.email}</li>
+            <li> Phone: {submittedData.phone}</li>
+            <li>          <button
+            onClick={updateHandler}
+            className='bg-blue-400 text-white font-bold px-4 py-1 rounded mr-4 hover:bg-blue-600'
+          >
+            Update
+          </button>
+          <button
+            onClick={deleteHandler}
+            className='bg-red-400 text-white font-bold px-4 py-1 rounded hover:bg-red-600'
+          >
+            Delete
+          </button></li>
+            </ul>
+          
+         
           </div>
         )}
 
         <div className='bg-[url("/cardbg.jpg")] font-bold text-white lg:mx-24 md:mx-16 sm:mx-0 mt-24  '>
-          <h1 className='text-5xl pb-6 text-center pt-6'>Fill This Form</h1>
+        <div className='flex justify-center items-center'>
+        <h1 className='text-5xl pb-6 text-center pt-6'>Fill This Form</h1> 
+        
+        </div>
           <div className='text-center'>
             <div>
               <label className='text-2xl py-1 ' htmlFor='name'>
@@ -126,6 +138,7 @@ export default function Page() {
             >
               {loading ? 'Submitting...' : 'Submit'}
             </button>
+            <button onClick={fetchData} className='bg-green-400 rounded-2xl cursor-pointer  h-8 hover:bg-black hover:scale-110 hover:text-white  p-1 px-4 text-white font-bold text-1xl text-center ml-20'>See Detail </button>
           </div>
         </div>
       </div>
