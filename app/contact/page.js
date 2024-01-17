@@ -42,7 +42,11 @@ const fetchData = async()=>{
     const collectionName = collection(db,'portfolio')
     const docs = await getDocs(collectionName);
   }
-  try
+  try {
+    
+  } catch (error) {
+    
+  }
 
   
 };
