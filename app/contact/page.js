@@ -9,8 +9,8 @@ export default function Page() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false); // State to manage loading
-  const [submittedData, setSubmittedData] = useState(null);
-
+  const [submittedData, setSubmittedData] = useState();
+  // const [people,setPeople]=usestat
   const submitHandler = async () => {
     if (!name || !phone || !email) {
       alert('All fields are required');
@@ -41,15 +41,23 @@ const fetchData = async()=>{
   try{
     const collectionName = collection(db,'portfolio')
     const docs = await getDocs(collectionName);
+    const peopleData = []
+    docs.forEach((doc)=>{
+      peopleData.push({
+        id:doc.id,
+        ...doc.data()
+      })
+      setSubmittedData(peopleData)
+      console.log('submit',peopleData)
+      alert('thanks')
+    })
+  }catch{
+    console.log('fetchdata');
   }
-  try {
-    
-  } catch (error) {
-    
-  }
+  
 
   
-};
+}
   const updateHandler = async () => {
   
   };
@@ -66,7 +74,7 @@ const fetchData = async()=>{
         <div className='text-center'>
         {submittedData && (
           <div className='mt-6 text-center'>
-            <h2 className='text-3xl text-white'>Submitted Details:</h2>
+            <h2 className='text-3xl text-white'>See Details:</h2>
             <ul>
             <li>              Name: {submittedData.name} </li>
             <li>Email: {submittedData.email}</li>
@@ -89,12 +97,12 @@ const fetchData = async()=>{
           </div>
         )}
 
-        <div className='bg-[url("/cardbg.jpg")] font-bold text-white lg:mx-24 md:mx-16 sm:mx-0 mt-24  '>
-        <div className='flex justify-center items-center'>
+        <div className='bg-[url("/cardbg.jpg")] font-bold text-white lg:mx-24 md:mx-16 sm:mx-0 mt-24   '>
+        <div className='flex justify-center items-center '>
         <h1 className='text-5xl pb-6 text-center pt-6'>Fill This Form</h1> 
         
         </div>
-          <div className='text-center'>
+          <div className='text-center '>
             <div>
               <label className='text-2xl py-1 ' htmlFor='name'>
                 Enter Your Name:
