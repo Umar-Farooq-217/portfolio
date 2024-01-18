@@ -53,6 +53,7 @@ const fetchData = async()=>{
     })
   }catch{
     console.log('fetchdata');
+    console.log('nice');
   }
   
 
