@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import Navbar from '../components/navbar/Navbar';
-import { addDoc, collection, updateDoc, doc, deleteDoc } from 'firebase/firestore';
+import { addDoc, collection, updateDoc, doc, deleteDoc,getDocs } from 'firebase/firestore';
 import { db } from '@/config/firebase';
 
 export default function Page() {
@@ -49,11 +49,10 @@ const fetchData = async()=>{
       })
       setSubmittedData(peopleData)
       console.log('submit',peopleData)
-      alert('thanks')
+      
     })
   }catch{
-    console.log('fetchdata');
-    console.log('nice');
+  
   }
   
 
@@ -73,30 +72,7 @@ const fetchData = async()=>{
       <div className='bg-[url("/bg.jpg")] bg-cover h-full '>
         <Navbar />
         <div className='text-center'>
-        {submittedData && (
-          <div className='mt-6 text-center'>
-            <h2 className='text-3xl text-white'>See Details:</h2>
-            <ul>
-            <li>              Name: {submittedData.name} </li>
-            <li>Email: {submittedData.email}</li>
-            <li> Phone: {submittedData.phone}</li>
-            <li>          <button
-            onClick={updateHandler}
-            className='bg-blue-400 text-white font-bold px-4 py-1 rounded mr-4 hover:bg-blue-600'
-          >
-            Update
-          </button>
-          <button
-            onClick={deleteHandler}
-            className='bg-red-400 text-white font-bold px-4 py-1 rounded hover:bg-red-600'
-          >
-            Delete
-          </button></li>
-            </ul>
-          
-         
-          </div>
-        )}
+      
 
         <div className='bg-[url("/cardbg.jpg")] font-bold text-white lg:mx-24 md:mx-16 sm:mx-0 mt-24   '>
         <div className='flex justify-center items-center '>
@@ -151,7 +127,8 @@ const fetchData = async()=>{
             >
               {loading ? 'Submitting...' : 'Submit'}
             </button>
-            <button onClick={fetchData} className='bg-green-400 rounded-2xl cursor-pointer  h-8 hover:bg-black hover:scale-110 hover:text-white  p-1 px-4 text-white font-bold text-1xl text-center ml-20'>See Detail </button>
+          <Link>
+            <button  className='bg-green-400 rounded-2xl cursor-pointer  h-8 hover:bg-black hover:scale-110 hover:text-white  p-1 px-4 text-white font-bold text-1xl text-center ml-20'>See Detail </button>
           </div>
         </div>
       </div>
