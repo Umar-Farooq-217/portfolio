@@ -11,11 +11,14 @@ export default function Page() {
   const [loading, setLoading] = useState(false); // State to manage loading
   const [submittedData, setSubmittedData] = useState();
   // const [people,setPeople]=usestat
-  const submitHandler = async () => {
+  const submitHandler = async (event) => {
+    event.preventDefault(); // Prevent the default form submission behavior
+
     if (!name || !phone || !email) {
       alert('All fields are required');
       return;
     }
+
     try {
       setLoading(true);
       let data = {
@@ -25,8 +28,7 @@ export default function Page() {
       };
 
       const collectionName = collection(db, 'portfolio');
-       await addDoc(collectionName, data);
-   
+      await addDoc(collectionName, data);
     } catch (error) {
       console.error('Error adding document: ', error);
     } finally {
@@ -36,35 +38,13 @@ export default function Page() {
     setName('');
     setEmail('');
     setPhone('');
+    alert('Thanks for Submitting your detail');
   };
-const fetchData = async()=>{
-  try{
-    const collectionName = collection(db,'portfolio')
-    const docs = await getDocs(collectionName);
-    const peopleData = []
-    docs.forEach((doc)=>{
-      peopleData.push({
-        id:doc.id,
-        ...doc.data()
-      })
-      setSubmittedData(peopleData)
-      console.log('submit',peopleData)
-      
-    })
-  }catch{
-  
-  }
+
   
 
   
-}
-  const updateHandler = async () => {
-  
-  };
 
-  const deleteHandler = async () => {
-   
-  };
 
 
   return (
@@ -127,8 +107,8 @@ const fetchData = async()=>{
             >
               {loading ? 'Submitting...' : 'Submit'}
             </button>
-          <Link>
-            <button  className='bg-green-400 rounded-2xl cursor-pointer  h-8 hover:bg-black hover:scale-110 hover:text-white  p-1 px-4 text-white font-bold text-1xl text-center ml-20'>See Detail </button>
+          
+          
           </div>
         </div>
       </div>
